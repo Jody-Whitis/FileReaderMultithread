@@ -17,12 +17,12 @@ namespace FileReaderMultithread.Test
             Assert.IsNotNull(textFileOperations.ReadFileToObject());
         }
 
-        //[Ignore("Insert expected filecount per machine")]
+        [Ignore("Insert expected filecount per machine")]
         [DataRow("q:\\",0)]
         [TestMethod]
         public void GetFileCountInDirectoryTest(string workingDirectory, int expectedCount)
         {
-            TextFileOperations textFileOperations = new TextFileOperations("mockFile.txt", "txt");
+            TextFileOperations textFileOperations = new TextFileOperations("mockFile.txt", "txt", new string[] { });
             Assert.AreEqual(expectedCount, textFileOperations.GetFileCountInDirectory(workingDirectory));   
         }
 

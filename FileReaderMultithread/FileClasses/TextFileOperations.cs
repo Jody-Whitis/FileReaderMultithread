@@ -5,9 +5,18 @@ namespace FileReaderMultithread.FileClasses
 {
     public class TextFileOperations : FileOperations
     {
-        public TextFileOperations(string fileName, string extension) : base(fileName)
+        public TextFileOperations()
+        {
+        }
+
+        public TextFileOperations(string filePath, string extension) : base(filePath)
         {
             this.Extension = extension;
+        }
+
+        public TextFileOperations(string fileName, string extension, string[] delimiters) : base(fileName, extension,delimiters)
+        {
+
         }
 
         public override object ReadFileToObject()
