@@ -7,7 +7,7 @@ namespace FileReaderMultithread.Utilities
 {
     public abstract class FileOperations : FileOperationsInterface
     {
-        public FileIOInterface FileIOInstance { get; set; }
+        protected FileIOInterface FileIOInstance { get; set; }
 
         protected string FilePath { get; set; }
 
