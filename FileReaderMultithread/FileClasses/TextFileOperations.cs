@@ -1,4 +1,5 @@
-﻿using FileReaderMultithread.Utilities;
+﻿using FileReaderMultithread.Enums;
+using FileReaderMultithread.Utilities;
 using System;
 
 namespace FileReaderMultithread.FileClasses
@@ -11,7 +12,12 @@ namespace FileReaderMultithread.FileClasses
 
         public TextFileOperations(string filePath, string extension) : base(filePath)
         {
-            this.Extension = extension;
+            Extension = extension;
+        }
+
+        public TextFileOperations(string filePath) : base(filePath)
+        {
+            Extension = FileTypeExtensions.TextFile;
         }
 
         public TextFileOperations(string fileName, string extension, string[] delimiters) : base(fileName, extension,delimiters)

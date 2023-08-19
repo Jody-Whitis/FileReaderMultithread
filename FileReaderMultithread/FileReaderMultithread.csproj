@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\FileOperationStatus.cs" />
+    <Compile Include="Enums\FileTypeExtensions.cs" />
+    <Compile Include="FileClasses\FileIORealOperations.cs" />
+    <Compile Include="FileClasses\FileIOInterface.cs" />
     <Compile Include="FileClasses\FileOperationsInterface.cs" />
     <Compile Include="FileClasses\TextFileOperations.cs" />
     <Compile Include="Program.cs" />

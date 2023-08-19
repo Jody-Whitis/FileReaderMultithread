@@ -1,5 +1,7 @@
-﻿using FileReaderMultithread.FileClasses;
-using System; 
+﻿using FileReaderMultithread.Enums;
+using FileReaderMultithread.FileClasses;
+using System;
+using System.IO;
 
 namespace FileReaderMultithread
 {
@@ -13,21 +15,25 @@ namespace FileReaderMultithread
             {
                 string filePath = "C:\\Users\\chick\\Documents\\FileReaderTest";
 
-                TextFileOperations textOperations = new TextFileOperations(filePath,"txt");
+                TextFileOperations textOperations = new TextFileOperations(filePath);
 
                 TotalCount = textOperations.GetFileCountInDirectory(filePath);
 
-                int numberOfFilesFound = 0;
                 //todo: move to class in seperate branch
-                textOperations.MoveFile($"{filePath}\\test.txt");
-                numberOfFilesFound = TotalCount;
+                string file = $"{filePath}\\test.txt";
+                string destination = string.Concat(Path.GetDirectoryName(file), $"\\Done\\{Path.GetFileName(file)}");
 
-                Console.WriteLine(numberOfFilesFound);
+                int fileMovedStatus = textOperations.MoveFile(file, destination);
+
+
+                Console.WriteLine(Enum.GetName(typeof(FileOperationStatus),fileMovedStatus));
+
             }
 
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+
                 Environment.Exit(1);
             }
 
