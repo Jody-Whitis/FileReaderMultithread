@@ -25,6 +25,11 @@ namespace FileReaderMultithread.FileClasses
 
         }
 
+        public TextFileOperations(string fileName, string extensions, string[] delimiters, FileIOInterface mockFileIO) : base(fileName, extensions, delimiters, mockFileIO)
+        {
+
+        }
+
         public override object ReadFileToObject()
         {
             return new object();

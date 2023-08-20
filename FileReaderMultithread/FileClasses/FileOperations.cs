@@ -74,7 +74,6 @@ namespace FileReaderMultithread.Utilities
                     fileStatus = Convert.ToInt32(FileOperationStatus.FileSourceDoesNotExists);
 
                 }
-
                 else if (!FileIOInstance.FileExists(destinationPath))
                 {
 
@@ -83,7 +82,6 @@ namespace FileReaderMultithread.Utilities
                     fileStatus = Convert.ToInt32(FileOperationStatus.FileMoved);
 
                 }
-
                 else
                 {
 
