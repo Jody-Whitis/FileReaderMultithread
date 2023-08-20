@@ -50,6 +50,7 @@
     <Compile Include="FileClasses\FileIOInterface.cs" />
     <Compile Include="FileClasses\FileOperationsInterface.cs" />
     <Compile Include="FileClasses\TextFileOperations.cs" />
+    <Compile Include="MultiThreading\MultiThreading.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileClasses\FileOperations.cs" />
