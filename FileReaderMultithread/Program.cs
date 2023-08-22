@@ -23,9 +23,9 @@ namespace FileReaderMultithread
 
             try
             {
-                 
-                ProcessMoveFilesTasks();
 
+                ProcessMoveFilesTasks();
+                
                 Console.ReadKey();
             }
 
@@ -52,9 +52,12 @@ namespace FileReaderMultithread
             Stopwatch fileMoveTime = new Stopwatch();
 
             fileMoveTime.Start();
+
             FileMove(directory1);
             FileMove(directory2);
             FileMove(directory3);
+
+ 
             fileMoveTime.Stop();
 
             Console.WriteLine($"{DoneCount} of {TotalCount} done successfully in {fileMoveTime.ElapsedMilliseconds} miliseconds!");
@@ -70,27 +73,31 @@ namespace FileReaderMultithread
             TotalCount += Directory.GetFiles(directory2).Count();
             TotalCount += Directory.GetFiles(directory3).Count();
 
+            Thread thread1 = new Thread(() => FileMove(directory1));
+            Thread thread2 = new Thread(() => FileMove(directory2));
+            Thread thread3 = new Thread(() => FileMove(directory3));
+
             Stopwatch fileMoveTime = new Stopwatch();
 
             fileMoveTime.Start();
-            var task1 = Task.Run(() => FileMove(directory1));
-            task1.Wait();
 
-            var task2 = Task.Run(() => FileMove(directory2));
-            task2.Wait();
+            thread1.Start();
+            thread2.Start();
+            thread3.Start();
 
-            var task3 = Task.Run(() => FileMove(directory3));
-            task3.Wait();
+            thread1.Join();
+            thread2.Join();
+            thread3.Join();
 
             fileMoveTime.Stop();
+
 
             Console.WriteLine($"{DoneCount} of {TotalCount} done successfully in {fileMoveTime.ElapsedMilliseconds} miliseconds!");
          }
 
         static void FileMove(string workingDirectory)
         {
-            lock (lockCompleted)
-            {
+            
                 TextFileOperations textOperations = new TextFileOperations(workingDirectory);
 
                 string[] files = Directory.GetFiles(workingDirectory);
@@ -101,11 +108,11 @@ namespace FileReaderMultithread
 
                     int fileMovedStatus = textOperations.MoveFile(fileSelected, destination);
 
-                    Console.WriteLine($"{Enum.GetName(typeof(FileOperationStatus), fileMovedStatus)} - {Path.GetFileName(fileSelected)}");
+                    Console.WriteLine($"{DateTime.Now} - {Enum.GetName(typeof(FileOperationStatus), fileMovedStatus)} - {Path.GetFileName(fileSelected)}");
 
                     DoneCount++;
                 }
-            }
+            
              
         }
     }
