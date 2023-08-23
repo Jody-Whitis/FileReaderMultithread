@@ -93,7 +93,9 @@ namespace FileReaderMultithread
 
         static void FileMove(string workingDirectory)
         {
-            
+
+            lock (lockCompleted)
+            {
                 TextFileOperations textOperations = new TextFileOperations(workingDirectory);
 
                 string[] files = Directory.GetFiles(workingDirectory);
@@ -108,8 +110,10 @@ namespace FileReaderMultithread
 
                     DoneCount++;
                 }
-            
-             
+
+
+            }
+
         }
     }
 }
