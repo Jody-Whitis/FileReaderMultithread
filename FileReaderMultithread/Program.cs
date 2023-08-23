@@ -73,24 +73,20 @@ namespace FileReaderMultithread
             TotalCount += Directory.GetFiles(directory2).Count();
             TotalCount += Directory.GetFiles(directory3).Count();
 
-            Thread thread1 = new Thread(() => FileMove(directory1));
-            Thread thread2 = new Thread(() => FileMove(directory2));
-            Thread thread3 = new Thread(() => FileMove(directory3));
+
+            List<Task> tasks = new List<Task>();
+
+            tasks.Add(Task.Run(() => FileMove(directory1)));
+            tasks.Add(Task.Run(() => FileMove(directory2)));
+            tasks.Add(Task.Run(() => FileMove(directory3)));
 
             Stopwatch fileMoveTime = new Stopwatch();
 
             fileMoveTime.Start();
-
-            thread1.Start();
-            thread2.Start();
-            thread3.Start();
-
-            thread1.Join();
-            thread2.Join();
-            thread3.Join();
+       
+            Task.WaitAll(tasks.ToArray());
 
             fileMoveTime.Stop();
-
 
             Console.WriteLine($"{DoneCount} of {TotalCount} done successfully in {fileMoveTime.ElapsedMilliseconds} miliseconds!");
          }
