@@ -12,5 +12,7 @@ namespace FileReaderMultithread.FileClasses
         bool FileExists(string filePath);
 
         string[] DirectoryGetFiles(string filepath, string searchPattern);
+
+        string[] DirectoryGetFiles(string filepath);
     }
 }

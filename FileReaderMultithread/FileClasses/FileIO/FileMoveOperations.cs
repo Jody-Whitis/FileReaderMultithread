@@ -43,7 +43,7 @@ namespace FileReaderMultithread.FileClasses.FileIO
             try
             {
                
-                Directories.ForEach(directory => totalCount += Directory.GetFiles(directory).Count());
+                Directories.ForEach(directory => totalCount += FileIOInstance.DirectoryGetFiles(directory).Count());
 
                 Stopwatch fileMoveTime = new Stopwatch();
 
@@ -85,9 +85,9 @@ namespace FileReaderMultithread.FileClasses.FileIO
 
             lock (lockCompleted)
             {
-                TextFileOperations textOperations = new TextFileOperations(workingDirectory);
+                TextFileOperations textOperations = new TextFileOperations(workingDirectory, ".txt", new string[] {" "},FileIOInstance);
 
-                string[] files = Directory.GetFiles(workingDirectory);
+                string[] files = FileIOInstance.DirectoryGetFiles(workingDirectory);
 
                 foreach (string fileSelected in files)
                 {
