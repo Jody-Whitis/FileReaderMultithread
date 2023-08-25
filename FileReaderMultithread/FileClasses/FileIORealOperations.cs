@@ -19,6 +19,11 @@ namespace FileReaderMultithread.FileClasses
             return Directory.GetFiles(filepath, searchPattern);
         }
 
+        public string[] DirectoryGetFiles(string filePath)
+        {
+            return Directory.GetFiles(filePath);
+        }
+
         public bool FileExists(string filePath)
         {
             return File.Exists(filePath);

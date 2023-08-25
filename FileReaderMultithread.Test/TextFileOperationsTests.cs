@@ -18,12 +18,12 @@ namespace FileReaderMultithread.Test
             Assert.IsNotNull(textFileOperations.ReadFileToObject());
         }
 
-        [DataRow("c:\\documents", 2,DisplayName = "GetFileCountInDirectoryTest - Directory Exists")]
-        [DataRow("c:\\nohere", 0, DisplayName = "GetFileCountInDirectoryTest - Directory Doesn't Exists")]
+        [DataRow("q:\\documents", 2,DisplayName = "GetFileCountInDirectoryTest - Directory Exists")]
+        [DataRow("q:\\nohere", 0, DisplayName = "GetFileCountInDirectoryTest - Directory Doesn't Exists")]
         [TestMethod]
         public void GetFileCountInDirectoryTest(string workingDirectory, int expectedCount)
         {
-            string[] mockCDrive = { "c:\\documents\\file1.txt", "c:\\documents\\file2.txt" };
+            string[] mockCDrive = { "q:\\documents\\file1.txt", "q:\\documents\\file2.txt" };
 
             Mock<FileIOInterface> mockFileIO = new Mock<FileIOInterface>();
 
@@ -36,13 +36,13 @@ namespace FileReaderMultithread.Test
             Assert.AreEqual(expectedCount, textFileOperations.GetFileCountInDirectory(workingDirectory));   
         }
 
-        [DataRow("c:\\documents\\file1.txt", "c:\\done\\file1.txt", 1, DisplayName = "MoveFileTest - File Moved")]
-        [DataRow("c:\\documents\\file3.txt", "c:\\done\\file3.txt", 6, DisplayName = "MoveFileTest - Source File Does Not Exists")]
-        [DataRow("c:\\documents\\filex.txt", "c:\\done\\filex.txt", 4, DisplayName = "MoveFileTest - Destination File Exists, Not Moved")]
+        [DataRow("q:\\documents\\file1.txt", "q:\\done\\file1.txt", 1, DisplayName = "MoveFileTest - File Moved")]
+        [DataRow("q:\\documents\\file3.txt", "q:\\done\\file3.txt", 6, DisplayName = "MoveFileTest - Source File Does Not Exists")]
+        [DataRow("q:\\documents\\filex.txt", "q:\\done\\filex.txt", 4, DisplayName = "MoveFileTest - Destination File Exists, Not Moved")]
         [TestMethod]
         public void MoveFileTest(string filePath, string destinationPath, int expectedFileStatus)
         {
-            List<string> mockCDrive = new List<string>{ "c:\\documents\\file1.txt", "c:\\documents\\filex.txt", "c:\\done\\filex.txt" };
+            List<string> mockCDrive = new List<string>{ "q:\\documents\\file1.txt", "q:\\documents\\filex.txt", "q:\\done\\filex.txt" };
 
             Mock<FileIOInterface> mockFileIO = new Mock<FileIOInterface>();
 
@@ -64,11 +64,11 @@ namespace FileReaderMultithread.Test
         }
 
 
-        [DataRow("c:\\documents\\file1.txt", "c:\\done\\file1.txt", DisplayName = "MoveFileTest - File Moved Exception")]
+        [DataRow("q:\\documents\\file1.txt", "q:\\done\\file1.txt", DisplayName = "MoveFileTest - File Moved Exception")]
         [TestMethod]
         public void MoveFileErrorTest(string filePath, string destinationPath)
         {
-            List<string> mockCDrive = new List<string> { "c:\\documents\\file1.txt", "c:\\documents\\filex.txt", "c:\\done\\filex.txt" };
+            List<string> mockCDrive = new List<string> { "q:\\documents\\file1.txt", "q:\\documents\\filex.txt", "q:\\done\\filex.txt" };
 
             Mock<FileIOInterface> mockFileIO = new Mock<FileIOInterface>();
 
