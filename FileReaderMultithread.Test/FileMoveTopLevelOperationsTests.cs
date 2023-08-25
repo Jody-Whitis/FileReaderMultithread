@@ -38,5 +38,50 @@ namespace FileReaderMultithread.Test
             Assert.AreEqual(expectedDoneCount, doneCount);
         }
 
+
+        [DataRow("q:\\documents","q:\\document\\file1.txt","q:\\document\\file2.txt",2)]
+        [TestMethod]
+        public void FileMove(string workingDirectory, string file1, string file2, int expectedDone)
+        {
+            List<string> files = new List<string>();
+            files.Add(file1);
+            files.Add(file2);
+
+            Mock<FileIOInterface> mockFileOperation = new Mock<FileIOInterface>();
+            mockFileOperation.Setup(x => x.DirectoryGetFiles(workingDirectory)).Returns(files.ToArray());
+            mockFileOperation.Setup(x => x.FileMove(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
+            mockFileOperation.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true); 
+            mockFileOperation.Setup(x => x.DirectoryExists(It.IsAny<string>())).Returns(true); 
+
+            FileMoveTopLevelOperations fileMoveTopLevelOperations = new FileMoveTopLevelOperations(false, new List<string>(){ workingDirectory }, mockFileOperation.Object);
+
+            fileMoveTopLevelOperations.FileMove(workingDirectory);
+
+            Assert.AreEqual(expectedDone, fileMoveTopLevelOperations.DoneCount);
+
+        }
+
+        [DataRow("q:\\documents", "q:\\document\\file1.txt", "q:\\document\\file2.txt", 2)]
+        [TestMethod]
+        public void ProcessFileMoveTest(string workingDirectory, string file1, string file2, int expectedDoneCount)
+        {
+            List<string> files = new List<string>();
+            files.Add(file1);
+            files.Add(file2);
+
+            Mock<FileIOInterface> mockFileOperation = new Mock<FileIOInterface>();
+            mockFileOperation.Setup(x => x.DirectoryGetFiles(workingDirectory)).Returns(files.ToArray());
+            mockFileOperation.Setup(x => x.FileMove(It.IsAny<string>(), It.IsAny<string>())).Verifiable();
+            mockFileOperation.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
+            mockFileOperation.Setup(x => x.DirectoryExists(It.IsAny<string>())).Returns(true);
+
+            FileMoveTopLevelOperations fileMoveTopLevelOperations = new FileMoveTopLevelOperations(false, new List<string>() { workingDirectory }, mockFileOperation.Object);
+
+            fileMoveTopLevelOperations.ProcessFileMove();
+
+            Assert.AreEqual(expectedDoneCount, fileMoveTopLevelOperations.DoneCount);   
+
+        }
+
     }
 }
