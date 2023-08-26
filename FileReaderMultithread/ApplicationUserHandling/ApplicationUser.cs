@@ -41,7 +41,7 @@ namespace FileReaderMultithread.ApplicationUserHandling
         {
             HashSet<string> directories = new HashSet<string>();
 
-            Console.WriteLine("\r\n\r\n1. Enter Directories to Process:");
+            Console.WriteLine("\r\n\r\nEnter Directories to Process:");
 
             string userInput = ConsoleInstance.ConsoleReadLine();
 
