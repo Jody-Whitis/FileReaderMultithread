@@ -44,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationUserHandling\ApplicationUser.cs" />
+    <Compile Include="ApplicationUserHandling\ConsoleSystemReal.cs" />
+    <Compile Include="ApplicationUserHandling\Interfaces\ConsoleInterface.cs" />
     <Compile Include="Enums\FileOperationStatus.cs" />
     <Compile Include="Enums\FileTypeExtensions.cs" />
+    <Compile Include="Enums\UserPrompts.cs" />
     <Compile Include="FileClasses\FileIORealOperations.cs" />
     <Compile Include="FileClasses\FileIOInterface.cs" />
     <Compile Include="FileClasses\FileIO\FileMoveOperations.cs" />

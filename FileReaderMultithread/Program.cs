@@ -1,4 +1,5 @@
-﻿using FileReaderMultithread.FileClasses.FileIO;
+﻿using FileReaderMultithread.ApplicationUserHandling;
+using FileReaderMultithread.FileClasses.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +15,15 @@ namespace FileReaderMultithread
 
             try
             {
-                List<string> directories = new List<string> { };
-                directories.Add("C:\\Users\\chick\\Documents\\FileReaderTest");
-                directories.Add("C:\\Users\\chick\\Documents\\FileReaderTest\\1");
-                directories.Add("C:\\Users\\chick\\Documents\\FileReaderTest\\2");
-
-                FileMoveTopLevelOperations fileMoveOperations = new FileMoveTopLevelOperations(true, directories);
+                ApplicationUser applicationUser = new ApplicationUser(50);
+                Console.WriteLine(ApplicationUser.USERWELCOME);
+                HashSet<string> directories = applicationUser.GetDirectoriesFromUser();
+            
+                FileMoveTopLevelOperations fileMoveOperations = new FileMoveTopLevelOperations(true, directories.ToList());
+                Console.WriteLine("Processing File Move to the Done folder");
                 fileMoveOperations.RunFileMove(TotalCount);
 
-                Console.ReadKey();
-
+                
             }
 
             catch (Exception ex)
@@ -31,6 +31,14 @@ namespace FileReaderMultithread
                 Console.WriteLine(ex.ToString());
 
                 Environment.Exit(1);
+            }
+            finally
+            {
+
+                Console.WriteLine("Exiting Applicaation..");
+
+                Console.ReadKey();
+
             }
 
         }
