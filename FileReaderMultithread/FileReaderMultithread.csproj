@@ -51,9 +51,9 @@
     <Compile Include="Enums\FileTypeExtensions.cs" />
     <Compile Include="Enums\UserPrompts.cs" />
     <Compile Include="FileClasses\FileIORealOperations.cs" />
-    <Compile Include="FileClasses\FileIOInterface.cs" />
+    <Compile Include="FileClasses\Interfaces\FileIOInterface.cs" />
     <Compile Include="FileClasses\FileIO\FileMoveOperations.cs" />
-    <Compile Include="FileClasses\FileOperationsInterface.cs" />
+    <Compile Include="FileClasses\Interfaces\FileOperationsInterface.cs" />
     <Compile Include="FileClasses\TextFileOperations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
